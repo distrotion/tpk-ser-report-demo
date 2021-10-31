@@ -1,11 +1,11 @@
-enum DataSequncePage1 {
+enum DataSequncePage1_RP {
   select,
   update,
   delete,
   insert,
 }
 
-enum DataSequncePage2 {
+enum DataSequncePage2_RP {
   select,
   update,
   delete,

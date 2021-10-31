@@ -23,7 +23,7 @@ int ListTable2Status = 0;
 
 class DataListTable2 extends StatefulWidget {
   const DataListTable2({Key? key, required this.datainput}) : super(key: key);
-  final List<MainStrucTableTap2> datainput;
+  final List<MainStrucTableTap2_RP> datainput;
   @override
   _DataListTable2State createState() => _DataListTable2State();
 }
@@ -34,7 +34,7 @@ class _DataListTable2State extends State<DataListTable2> {
 
   @override
   Widget build(BuildContext context) {
-    List<MainStrucTableTap2> Listdata_Clone = widget.datainput;
+    List<MainStrucTableTap2_RP> Listdata_Clone = widget.datainput;
 
     double nDataColumnWidth = 75;
     double nDataColumnWidthIcon = 100;
@@ -107,17 +107,17 @@ class _DataListTable2State extends State<DataListTable2> {
 
     //------------------------------------------------------------------------------------------------
 
-    void _tapView(MainStrucTableTap2 s) {
+    void _tapView(MainStrucTableTap2_RP s) {
       //click all
       // print("123");
       ListTable2Status = 1;
-      EditDataTable2 = s;
-      EditDataTable2buffer = s;
-      undercontroltap2 = true;
-      Branch = s.field04;
-      Code = s.field05;
+      EditDataTable2_RP = s;
+      EditDataTable2buffer_RP = s;
+      undercontroltap2_RP = true;
+      Branch_RP = s.field04;
+      Code_RP = s.field05;
 
-      context.read<FetchDataTable2Bloc>().add(DataSequncePage2.select);
+      context.read<FetchDataTable2Bloc>().add(DataSequncePage2_RP.select);
       _ConsoleBox(s, context, zeroDropDownData);
     }
 
@@ -154,34 +154,34 @@ class _DataListTable2State extends State<DataListTable2> {
     //   CloseYNPopup();
     //   BlocProvider.of<BlocChangePage>(context).changePage(enumPageList.Tele);
     // }
-    void _Edit(MainStrucTableTap2 s) {
+    void _Edit(MainStrucTableTap2_RP s) {
       _CloseYNPopup();
       BlocProvider.of<BlocPageRebuild>(context).rebuildPage();
     }
 
     void _Delete(String s) {
       _CloseYNPopup();
-      context.read<FetchDataTable2Bloc>().add(DataSequncePage2.delete);
+      context.read<FetchDataTable2Bloc>().add(DataSequncePage2_RP.delete);
     }
 
-    void _tapEdit(MainStrucTableTap2 s) {
+    void _tapEdit(MainStrucTableTap2_RP s) {
       // _CallYNPopup('Edit ${s}', 'Do you want to Edit ${s} now?', 'Yes', 'No',
       //     _Edit, _CloseYNPopup, s, false);
-      EditDataTable2 = s;
-      EditDataTable2buffer = s;
-      undercontroltap2 = true;
-      context.read<FetchDataTable2Bloc>().add(DataSequncePage2.select);
+      EditDataTable2_RP = s;
+      EditDataTable2buffer_RP = s;
+      undercontroltap2_RP = true;
+      context.read<FetchDataTable2Bloc>().add(DataSequncePage2_RP.select);
       // BlocProvider.of<BlocPageRebuild>(context).rebuildPage();
     }
 
-    void _tapDelete(MainStrucTableTap2 s) {
-      DeleteDataTable2buffer.number = s.number;
-      DeleteDataTable2buffer.field01 = s.field01;
-      DeleteDataTable2buffer.field02 = s.field02;
-      DeleteDataTable2buffer.field03 = s.field03;
-      DeleteDataTable2buffer.field04 = s.field04;
-      DeleteDataTable2buffer.field05 = s.field05;
-      DeleteDataTable2buffer.field06 = s.field06;
+    void _tapDelete(MainStrucTableTap2_RP s) {
+      DeleteDataTable2buffer_RP.number = s.number;
+      DeleteDataTable2buffer_RP.field01 = s.field01;
+      DeleteDataTable2buffer_RP.field02 = s.field02;
+      DeleteDataTable2buffer_RP.field03 = s.field03;
+      DeleteDataTable2buffer_RP.field04 = s.field04;
+      DeleteDataTable2buffer_RP.field05 = s.field05;
+      DeleteDataTable2buffer_RP.field06 = s.field06;
       _CallYNPopup(
           'Delete ${s.number}',
           'Are you sure you want to delete ${s.number}?',
@@ -203,7 +203,7 @@ class _DataListTable2State extends State<DataListTable2> {
       _tapView,
       _tapEdit,
       _tapDelete,
-      TableTap2nPage, //data
+      TableTap2nPage_RP, //data
     );
 
     //fixed error when sort the hide column on mobile
@@ -228,7 +228,7 @@ class _DataListTable2State extends State<DataListTable2> {
                     sLabel: "New",
                     func: () {
                       ListTable2Status = 0;
-                      MainStrucTableTap2 Zerodata = MainStrucTableTap2(
+                      MainStrucTableTap2_RP Zerodata = MainStrucTableTap2_RP(
                         number: "",
                         field01: "",
                         field02: "",
@@ -324,7 +324,7 @@ DataColumn _getBlankDataColumn(double nDataColumnWidthIcon) {
 
 // Cell Row -------------------------------------------------------------------
 List<DataRow> _getDataRowList(
-  List<MainStrucTableTap2> Listdata_Clone,
+  List<MainStrucTableTap2_RP> Listdata_Clone,
   double nDataColumnWidth,
   double nDataColumnWidthIcon,
   double nDataWidthIcon,
@@ -335,11 +335,11 @@ List<DataRow> _getDataRowList(
   Function funcDelete,
   int currentPage,
 ) {
-  int nStartCell = (currentPage - 1) * nTableCellPerEachPageTable2;
+  int nStartCell = (currentPage - 1) * nTableCellPerEachPageTable2_RP;
 
   List<DataRow> dataRowList = [];
   for (int n = nStartCell;
-      n < (nStartCell + nTableCellPerEachPageTable2);
+      n < (nStartCell + nTableCellPerEachPageTable2_RP);
       n++) {
     if (n < Listdata_Clone.length) {
       dataRowList.add(_getDataRow(
@@ -381,7 +381,7 @@ DataRow _getDataRow(
     Function funcView,
     Function funcEdit,
     Function funcDelete,
-    MainStrucTableTap2 getData) {
+    MainStrucTableTap2_RP getData) {
   //cells num must be match header column num
 
   return DataRow(
@@ -442,7 +442,7 @@ DataCell _getDataCell_Icon(
     double nDataColumnWidthIcon,
     double nDataWidthIcon,
     double nMarginToMakeIconSmaller,
-    MainStrucTableTap2 GetData) {
+    MainStrucTableTap2_RP GetData) {
   void _tapEdit() {
     funcEdit(GetData);
   }
@@ -483,15 +483,15 @@ DataCell _getDataCell_Icon(
   );
 }
 
-void _ConsoleBox(MainStrucTableTap2 input, BuildContext contextinput,
+void _ConsoleBox(MainStrucTableTap2_RP input, BuildContext contextinput,
     DropDownData dropdowndata) {
   showDialog(
     context: contextinput,
     barrierDismissible: true,
     builder: (BuildContext context) {
       // DropDownData _datadropdown = dropdowndata;
-      EditDataTable2.field04 = Branch;
-      EditDataTable2.field05 = Code;
+      EditDataTable2_RP.field04 = Branch_RP;
+      EditDataTable2_RP.field05 = Code_RP;
       return Dialog(
         child: Container(
           decoration: BoxDecoration(
@@ -529,11 +529,11 @@ void _ConsoleBox(MainStrucTableTap2 input, BuildContext contextinput,
                 height: 40,
                 // color: Colors.red,
                 child: ComInputText(
-                  isContr: undercontroltap2,
+                  isContr: undercontroltap2_RP,
                   fnContr: (input) {
-                    undercontroltap2 = input;
+                    undercontroltap2_RP = input;
                   },
-                  sValue: EditDataTable2.number,
+                  sValue: EditDataTable2_RP.number,
                   returnfunc: () {},
                   isEnabled: false,
                 ),
@@ -549,13 +549,13 @@ void _ConsoleBox(MainStrucTableTap2 input, BuildContext contextinput,
                 height: 40,
                 // color: Colors.red,
                 child: ComInputText(
-                    isContr: undercontroltap2,
+                    isContr: undercontroltap2_RP,
                     fnContr: (input) {
-                      undercontroltap2 = input;
+                      undercontroltap2_RP = input;
                     },
-                    sValue: EditDataTable2.field01,
+                    sValue: EditDataTable2_RP.field01,
                     returnfunc: (String s) {
-                      EditDataTable2buffer.field01 = s;
+                      EditDataTable2buffer_RP.field01 = s;
                     }),
               ),
               SizedBox(
@@ -569,13 +569,13 @@ void _ConsoleBox(MainStrucTableTap2 input, BuildContext contextinput,
                 height: 40,
                 // color: Colors.red,
                 child: ComInputText(
-                  isContr: undercontroltap2,
+                  isContr: undercontroltap2_RP,
                   fnContr: (input) {
-                    undercontroltap2 = input;
+                    undercontroltap2_RP = input;
                   },
-                  sValue: EditDataTable2.field02,
+                  sValue: EditDataTable2_RP.field02,
                   returnfunc: (String s) {
-                    EditDataTable2buffer.field02 = s;
+                    EditDataTable2buffer_RP.field02 = s;
                   },
                 ),
               ),
@@ -590,13 +590,13 @@ void _ConsoleBox(MainStrucTableTap2 input, BuildContext contextinput,
                 height: 40,
                 // color: Colors.red,
                 child: ComInputText(
-                  isContr: undercontroltap2,
+                  isContr: undercontroltap2_RP,
                   fnContr: (input) {
-                    undercontroltap2 = input;
+                    undercontroltap2_RP = input;
                   },
-                  sValue: EditDataTable2.field03,
+                  sValue: EditDataTable2_RP.field03,
                   returnfunc: (String s) {
-                    EditDataTable2buffer.field03 = s;
+                    EditDataTable2buffer_RP.field03 = s;
                   },
                 ),
               ),
@@ -609,10 +609,10 @@ void _ConsoleBox(MainStrucTableTap2 input, BuildContext contextinput,
               EasyDropDown(
                 width: 400,
                 height: 40,
-                value: Branch,
+                value: Branch_RP,
                 onChangeinside: (newValue) {
-                  Branch = newValue!;
-                  EditDataTable2buffer.field04 = newValue;
+                  Branch_RP = newValue!;
+                  EditDataTable2buffer_RP.field04 = newValue;
                   BlocProvider.of<BlocPageRebuild>(contextinput).rebuildPage();
                 },
                 listdropdown: ['', 'RAYONG', 'BANGPOO', 'GATEWAY'],
@@ -627,10 +627,10 @@ void _ConsoleBox(MainStrucTableTap2 input, BuildContext contextinput,
               EasyDropDown(
                 width: 400,
                 height: 40,
-                value: Code,
+                value: Code_RP,
                 onChangeinside: (newValue) {
-                  Code = newValue!;
-                  EditDataTable2buffer.field05 = newValue;
+                  Code_RP = newValue!;
+                  EditDataTable2buffer_RP.field05 = newValue;
                   BlocProvider.of<BlocPageRebuild>(contextinput).rebuildPage();
                 },
                 listdropdown: ['', 'TPK-SAR-STD', 'TPK-SAR-Condition01'],
@@ -674,7 +674,8 @@ void _ConsoleBox(MainStrucTableTap2 input, BuildContext contextinput,
                             // print(EditDataTable2buffer.field04);
                             // EditDataTable2buffer = EditDataTable2;
                             contextinput.read<FetchDataTable2Bloc>().add(
-                                DataSequncePage2.update); //<------------------
+                                DataSequncePage2_RP
+                                    .update); //<------------------
                             Navigator.pop(contextinput);
                           },
                           nWidth: 80),
@@ -685,8 +686,8 @@ void _ConsoleBox(MainStrucTableTap2 input, BuildContext contextinput,
                           sLabel: "Clear",
                           cBg: Colors.red,
                           func: () {
-                            undercontroltap2 = true;
-                            EditDataTable2 = MainStrucTableTap2(
+                            undercontroltap2_RP = true;
+                            EditDataTable2_RP = MainStrucTableTap2_RP(
                               number: "",
                               field01: "",
                               field02: "",
@@ -712,7 +713,7 @@ void _ConsoleBox(MainStrucTableTap2 input, BuildContext contextinput,
                           func: () {
                             contextinput
                                 .read<FetchDataTable2Bloc>()
-                                .add(DataSequncePage2.insert);
+                                .add(DataSequncePage2_RP.insert);
                             Navigator.pop(contextinput);
                           },
                           nWidth: 80),

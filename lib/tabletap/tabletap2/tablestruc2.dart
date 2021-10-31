@@ -32,7 +32,7 @@ class _TableStrucBuffer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => FetchDataTable2Bloc(),
-      child: BlocBuilder<FetchDataTable2Bloc, List<MainStrucTableTap2>>(
+      child: BlocBuilder<FetchDataTable2Bloc, List<MainStrucTableTap2_RP>>(
         builder: (_, State) {
           return _TableStrucMain2(
             datainput: State,
@@ -43,14 +43,10 @@ class _TableStrucBuffer extends StatelessWidget {
   }
 }
 
-int dropse = 1;
-String Branch = '';
-String Code = '';
-
 class _TableStrucMain2 extends StatefulWidget {
   const _TableStrucMain2({Key? key, this.datainput}) : super(key: key);
 
-  final List<MainStrucTableTap2>? datainput;
+  final List<MainStrucTableTap2_RP>? datainput;
 
   @override
   __TableStrucMain2State createState() => __TableStrucMain2State();
@@ -60,21 +56,21 @@ class __TableStrucMain2State extends State<_TableStrucMain2> {
   @override
   void initState() {
     super.initState();
-    context.read<FetchDataTable2Bloc>().add(DataSequncePage2.select);
+    context.read<FetchDataTable2Bloc>().add(DataSequncePage2_RP.select);
   }
 
   @override
   Widget build(BuildContext context) {
-    List<MainStrucTableTap2> _datainput = widget.datainput ?? [];
+    List<MainStrucTableTap2_RP> _datainput = widget.datainput ?? [];
     void tapChangeTablePage(int n) {
       setState(() {
         // print(n);
-        TableTap2nPage = n;
+        TableTap2nPage_RP = n;
       });
     }
 
-    EditDataTable2.field04 = Branch;
-    EditDataTable2.field05 = Code;
+    EditDataTable2_RP.field04 = Branch_RP;
+    EditDataTable2_RP.field05 = Code_RP;
 
     return ScrollConfiguration(
       behavior: ScrollConfiguration.of(context).copyWith(
@@ -334,12 +330,12 @@ class _BottomPageNum extends StatelessWidget {
   _BottomPageNum({Key? key, required this.func, this.datainput})
       : super(key: key);
   final Function func;
-  List<MainStrucTableTap2>? datainput;
+  List<MainStrucTableTap2_RP>? datainput;
 
   @override
   Widget build(BuildContext context) {
     MainAxisAlignment mainAxisAlignment;
-    List<MainStrucTableTap2> _datainput = datainput ?? [];
+    List<MainStrucTableTap2_RP> _datainput = datainput ?? [];
 
     //print("build BottomPageNum " + BlocPatientList.state.patientTableData.length.toString());
     return Row(
@@ -351,10 +347,10 @@ class _BottomPageNum extends StatelessWidget {
         ),
         ComPageNumBtnGroup(
           nItemNum: _datainput.length,
-          nPageSelects: TableTap2nPage,
+          nPageSelects: TableTap2nPage_RP,
           func: func,
-          nNumToShowArrowAtPage: nNumToShowArrowAtPageTable2,
-          nTableCellPerEachPage: nTableCellPerEachPageTable2,
+          nNumToShowArrowAtPage: nNumToShowArrowAtPageTable2_RP,
+          nTableCellPerEachPage: nTableCellPerEachPageTable2_RP,
         )
       ],
     );

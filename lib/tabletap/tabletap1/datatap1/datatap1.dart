@@ -1,12 +1,12 @@
 import '../modelintable.dart';
 
-int TableTap1nPage = 1;
-bool undercontroltap1 = false;
+int TableTap1nPage_RP = 1;
+bool undercontroltap1_RP = false;
 
-final int nTableCellPerEachPageTable1 = 5;
-final int nNumToShowArrowAtPageTable1 = 5; //show < > when more than 5 page
+final int nTableCellPerEachPageTable1_RP = 5;
+final int nNumToShowArrowAtPageTable1_RP = 5; //show < > when more than 5 page
 
-MainStrucTableTap1 EditDataTable1 = MainStrucTableTap1(
+MainStrucTableTap1_RP EditDataTable1_RP = MainStrucTableTap1_RP(
   number: "",
   field01: "",
   field02: "",
@@ -20,7 +20,7 @@ MainStrucTableTap1 EditDataTable1 = MainStrucTableTap1(
   field10: "",
 );
 
-MainStrucTableTap1 EditDataTable1buffer = MainStrucTableTap1(
+MainStrucTableTap1_RP EditDataTable1buffer_RP = MainStrucTableTap1_RP(
   number: "",
   field01: "",
   field02: "",
@@ -34,7 +34,7 @@ MainStrucTableTap1 EditDataTable1buffer = MainStrucTableTap1(
   field10: "",
 );
 
-MainStrucTableTap1 DeleteDataTable1buffer = MainStrucTableTap1(
+MainStrucTableTap1_RP DeleteDataTable1buffer_RP = MainStrucTableTap1_RP(
   number: "",
   field01: "",
   field02: "",

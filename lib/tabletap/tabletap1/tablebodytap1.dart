@@ -17,11 +17,11 @@ import 'package:pick_edit_datatable/widget/ComYNPopup.dart';
 import 'datatap1/datatap1.dart';
 import 'modelintable.dart';
 
-int ListTable1Status = 0;
+int ListTable1Status_RP = 0;
 
 class DataListTable extends StatefulWidget {
   const DataListTable({Key? key, required this.datainput}) : super(key: key);
-  final List<MainStrucTableTap1> datainput;
+  final List<MainStrucTableTap1_RP> datainput;
   @override
   _DataListTableState createState() => _DataListTableState();
 }
@@ -32,7 +32,7 @@ class _DataListTableState extends State<DataListTable> {
 
   @override
   Widget build(BuildContext context) {
-    List<MainStrucTableTap1> Listdata_Clone = widget.datainput;
+    List<MainStrucTableTap1_RP> Listdata_Clone = widget.datainput;
 
     double nDataColumnWidth = 75;
     double nDataColumnWidthIcon = 100;
@@ -105,7 +105,7 @@ class _DataListTableState extends State<DataListTable> {
 
     //------------------------------------------------------------------------------------------------
 
-    void _tapView(MainStrucTableTap1 s) {
+    void _tapView(MainStrucTableTap1_RP s) {
       //click all
       // print("123");
       // ListTable1Status = 1;
@@ -149,7 +149,7 @@ class _DataListTableState extends State<DataListTable> {
     //   CloseYNPopup();
     //   BlocProvider.of<BlocChangePage>(context).changePage(enumPageList.Tele);
     // }
-    void _Edit(MainStrucTableTap1 s) {
+    void _Edit(MainStrucTableTap1_RP s) {
       // _CloseYNPopup();
       // BlocProvider.of<BlocPageRebuild>(context).rebuildPage();
     }
@@ -157,28 +157,28 @@ class _DataListTableState extends State<DataListTable> {
     void _Delete(String s) {
       _CloseYNPopup();
 
-      context.read<FetchDataTable1Bloc>().add(DataSequncePage1.delete);
+      context.read<FetchDataTable1Bloc_RP>().add(DataSequncePage1_RP.delete);
     }
 
-    void _tapEdit(MainStrucTableTap1 s) {
+    void _tapEdit(MainStrucTableTap1_RP s) {
       print(s.number);
       print(s.field04);
       js.context.callMethod('open', [
         'http://172.20.30.46/ReportServer?%2fReport+Project4%2f${s.field04}&rs:Format=PDF&rs:Command=Render&T1=${s.number}'
       ]);
-      context.read<FetchDataTable1Bloc>().add(DataSequncePage1.select);
+      context.read<FetchDataTable1Bloc_RP>().add(DataSequncePage1_RP.select);
       BlocProvider.of<BlocPageRebuild>(context).rebuildPage();
     }
 
-    void _tapDelete(MainStrucTableTap1 s) {
+    void _tapDelete(MainStrucTableTap1_RP s) {
       // print(s.field01);
-      DeleteDataTable1buffer.number = s.number;
-      DeleteDataTable1buffer.field01 = s.field01;
-      DeleteDataTable1buffer.field02 = s.field02;
-      DeleteDataTable1buffer.field03 = s.field03;
-      DeleteDataTable1buffer.field04 = s.field04;
-      DeleteDataTable1buffer.field05 = s.field05;
-      DeleteDataTable1buffer.field06 = s.field06;
+      DeleteDataTable1buffer_RP.number = s.number;
+      DeleteDataTable1buffer_RP.field01 = s.field01;
+      DeleteDataTable1buffer_RP.field02 = s.field02;
+      DeleteDataTable1buffer_RP.field03 = s.field03;
+      DeleteDataTable1buffer_RP.field04 = s.field04;
+      DeleteDataTable1buffer_RP.field05 = s.field05;
+      DeleteDataTable1buffer_RP.field06 = s.field06;
       _CallYNPopup(
           'Delete ${s.number}',
           'Are you sure you want to delete ${s.number}?',
@@ -200,7 +200,7 @@ class _DataListTableState extends State<DataListTable> {
       _tapView,
       _tapEdit,
       _tapDelete,
-      TableTap1nPage, //data
+      TableTap1nPage_RP, //data
     );
 
     //fixed error when sort the hide column on mobile
@@ -320,7 +320,7 @@ DataColumn _getBlankDataColumn(double nDataColumnWidthIcon) {
 
 // Cell Row -------------------------------------------------------------------
 List<DataRow> _getDataRowList(
-  List<MainStrucTableTap1> Listdata_Clone,
+  List<MainStrucTableTap1_RP> Listdata_Clone,
   double nDataColumnWidth,
   double nDataColumnWidthIcon,
   double nDataWidthIcon,
@@ -331,11 +331,11 @@ List<DataRow> _getDataRowList(
   Function funcDelete,
   int currentPage,
 ) {
-  int nStartCell = (currentPage - 1) * nTableCellPerEachPageTable1;
+  int nStartCell = (currentPage - 1) * nTableCellPerEachPageTable1_RP;
 
   List<DataRow> dataRowList = [];
   for (int n = nStartCell;
-      n < (nStartCell + nTableCellPerEachPageTable1);
+      n < (nStartCell + nTableCellPerEachPageTable1_RP);
       n++) {
     if (n < Listdata_Clone.length) {
       dataRowList.add(_getDataRow(
@@ -377,7 +377,7 @@ DataRow _getDataRow(
     Function funcView,
     Function funcEdit,
     Function funcDelete,
-    MainStrucTableTap1 getData) {
+    MainStrucTableTap1_RP getData) {
   //cells num must be match header column num
 
   return DataRow(
@@ -438,7 +438,7 @@ DataCell _getDataCell_Icon(
     double nDataColumnWidthIcon,
     double nDataWidthIcon,
     double nMarginToMakeIconSmaller,
-    MainStrucTableTap1 GetData) {
+    MainStrucTableTap1_RP GetData) {
   void _tapEdit() {
     funcEdit(GetData);
   }
@@ -479,7 +479,7 @@ DataCell _getDataCell_Icon(
   );
 }
 
-void _ConsoleBox(MainStrucTableTap1 input, BuildContext contextinput,
+void _ConsoleBox(MainStrucTableTap1_RP input, BuildContext contextinput,
     DropDownData dropdowndata) {
   showDialog(
     context: contextinput,
@@ -525,11 +525,11 @@ void _ConsoleBox(MainStrucTableTap1 input, BuildContext contextinput,
                     height: 40,
                     // color: Colors.red,
                     child: ComInputText(
-                      isContr: undercontroltap1,
+                      isContr: undercontroltap1_RP,
                       fnContr: (input) {
-                        undercontroltap1 = input;
+                        undercontroltap1_RP = input;
                       },
-                      sValue: EditDataTable1.number,
+                      sValue: EditDataTable1_RP.number,
                       returnfunc: () {},
                       isEnabled: false,
                     ),
@@ -546,13 +546,13 @@ void _ConsoleBox(MainStrucTableTap1 input, BuildContext contextinput,
                     height: 40,
                     // color: Colors.red,
                     child: ComInputText(
-                        isContr: undercontroltap1,
+                        isContr: undercontroltap1_RP,
                         fnContr: (input) {
-                          undercontroltap1 = input;
+                          undercontroltap1_RP = input;
                         },
-                        sValue: EditDataTable1.field01,
+                        sValue: EditDataTable1_RP.field01,
                         returnfunc: (String s) {
-                          EditDataTable1buffer.field01 = s;
+                          EditDataTable1buffer_RP.field01 = s;
                         }),
                   ),
                   SizedBox(
@@ -567,13 +567,13 @@ void _ConsoleBox(MainStrucTableTap1 input, BuildContext contextinput,
                     height: 40,
                     // color: Colors.red,
                     child: ComInputText(
-                      isContr: undercontroltap1,
+                      isContr: undercontroltap1_RP,
                       fnContr: (input) {
-                        undercontroltap1 = input;
+                        undercontroltap1_RP = input;
                       },
-                      sValue: EditDataTable1.field02,
+                      sValue: EditDataTable1_RP.field02,
                       returnfunc: (String s) {
-                        EditDataTable1buffer.field02 = s;
+                        EditDataTable1buffer_RP.field02 = s;
                       },
                     ),
                   ),
@@ -588,13 +588,13 @@ void _ConsoleBox(MainStrucTableTap1 input, BuildContext contextinput,
                     height: 40,
                     // color: Colors.red,
                     child: ComInputText(
-                      isContr: undercontroltap1,
+                      isContr: undercontroltap1_RP,
                       fnContr: (input) {
-                        undercontroltap1 = input;
+                        undercontroltap1_RP = input;
                       },
-                      sValue: EditDataTable1.field03,
+                      sValue: EditDataTable1_RP.field03,
                       returnfunc: (String s) {
-                        EditDataTable1buffer.field03 = s;
+                        EditDataTable1buffer_RP.field03 = s;
                       },
                     ),
                   ),
@@ -610,13 +610,13 @@ void _ConsoleBox(MainStrucTableTap1 input, BuildContext contextinput,
                     height: 40,
                     // color: Colors.red,
                     child: ComInputText(
-                      isContr: undercontroltap1,
+                      isContr: undercontroltap1_RP,
                       fnContr: (input) {
-                        undercontroltap1 = input;
+                        undercontroltap1_RP = input;
                       },
-                      sValue: EditDataTable1.field04,
+                      sValue: EditDataTable1_RP.field04,
                       returnfunc: (String s) {
-                        EditDataTable1buffer.field04 = s;
+                        EditDataTable1buffer_RP.field04 = s;
                       },
                     ),
                   ),
@@ -632,13 +632,13 @@ void _ConsoleBox(MainStrucTableTap1 input, BuildContext contextinput,
                     height: 40,
                     // color: Colors.red,
                     child: ComInputText(
-                      isContr: undercontroltap1,
+                      isContr: undercontroltap1_RP,
                       fnContr: (input) {
-                        undercontroltap1 = input;
+                        undercontroltap1_RP = input;
                       },
-                      sValue: EditDataTable1.field05,
+                      sValue: EditDataTable1_RP.field05,
                       returnfunc: (String s) {
-                        EditDataTable1buffer.field05 = s;
+                        EditDataTable1buffer_RP.field05 = s;
                       },
                     ),
                   ),
@@ -676,8 +676,9 @@ void _ConsoleBox(MainStrucTableTap1 input, BuildContext contextinput,
                           func: () {
                             // print(EditDataTable1buffer.field04);
                             // EditDataTable1buffer = EditDataTable1;
-                            contextinput.read<FetchDataTable1Bloc>().add(
-                                DataSequncePage1.update); //<------------------
+                            contextinput.read<FetchDataTable1Bloc_RP>().add(
+                                DataSequncePage1_RP
+                                    .update); //<------------------
                             Navigator.pop(contextinput);
                           },
                           nWidth: 80),
@@ -688,8 +689,8 @@ void _ConsoleBox(MainStrucTableTap1 input, BuildContext contextinput,
                           sLabel: "Clear",
                           cBg: Colors.red,
                           func: () {
-                            undercontroltap1 = true;
-                            EditDataTable1 = MainStrucTableTap1(
+                            undercontroltap1_RP = true;
+                            EditDataTable1_RP = MainStrucTableTap1_RP(
                                 number: "",
                                 field01: "",
                                 field02: "",
@@ -701,7 +702,7 @@ void _ConsoleBox(MainStrucTableTap1 input, BuildContext contextinput,
                                 field08: "",
                                 field09: "",
                                 field10: "");
-                            EditDataTable1buffer = MainStrucTableTap1(
+                            EditDataTable1buffer_RP = MainStrucTableTap1_RP(
                                 number: "",
                                 field01: "",
                                 field02: "",
@@ -724,8 +725,8 @@ void _ConsoleBox(MainStrucTableTap1 input, BuildContext contextinput,
                           sLabel: "Insert",
                           func: () {
                             contextinput
-                                .read<FetchDataTable1Bloc>()
-                                .add(DataSequncePage1.insert);
+                                .read<FetchDataTable1Bloc_RP>()
+                                .add(DataSequncePage1_RP.insert);
                             Navigator.pop(contextinput);
                           },
                           nWidth: 80),

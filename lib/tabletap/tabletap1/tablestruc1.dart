@@ -30,8 +30,8 @@ class _TableStrucBuffer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => FetchDataTable1Bloc(),
-      child: BlocBuilder<FetchDataTable1Bloc, List<MainStrucTableTap1>>(
+      create: (_) => FetchDataTable1Bloc_RP(),
+      child: BlocBuilder<FetchDataTable1Bloc_RP, List<MainStrucTableTap1_RP>>(
         builder: (_, State) {
           return _TableStrucMain1(
             datainput: State,
@@ -45,7 +45,7 @@ class _TableStrucBuffer extends StatelessWidget {
 class _TableStrucMain1 extends StatefulWidget {
   const _TableStrucMain1({Key? key, this.datainput}) : super(key: key);
 
-  final List<MainStrucTableTap1>? datainput;
+  final List<MainStrucTableTap1_RP>? datainput;
 
   @override
   __TableStrucMain1State createState() => __TableStrucMain1State();
@@ -55,16 +55,16 @@ class __TableStrucMain1State extends State<_TableStrucMain1> {
   @override
   void initState() {
     super.initState();
-    context.read<FetchDataTable1Bloc>().add(DataSequncePage1.select);
+    context.read<FetchDataTable1Bloc_RP>().add(DataSequncePage1_RP.select);
   }
 
   @override
   Widget build(BuildContext context) {
-    List<MainStrucTableTap1> _datainput = widget.datainput ?? [];
+    List<MainStrucTableTap1_RP> _datainput = widget.datainput ?? [];
     void tapChangeTablePage(int n) {
       setState(() {
         // print(n);
-        TableTap1nPage = n;
+        TableTap1nPage_RP = n;
       });
     }
 
@@ -353,12 +353,12 @@ class BottomPageNum extends StatelessWidget {
   BottomPageNum({Key? key, required this.func, this.datainput})
       : super(key: key);
   final Function func;
-  List<MainStrucTableTap1>? datainput;
+  List<MainStrucTableTap1_RP>? datainput;
 
   @override
   Widget build(BuildContext context) {
     MainAxisAlignment mainAxisAlignment;
-    List<MainStrucTableTap1> _datainput = datainput ?? [];
+    List<MainStrucTableTap1_RP> _datainput = datainput ?? [];
 
     //print("build BottomPageNum " + BlocPatientList.state.patientTableData.length.toString());
     return Row(
@@ -370,10 +370,10 @@ class BottomPageNum extends StatelessWidget {
         ),
         ComPageNumBtnGroup(
           nItemNum: _datainput.length,
-          nPageSelects: TableTap1nPage,
+          nPageSelects: TableTap1nPage_RP,
           func: func,
-          nNumToShowArrowAtPage: nNumToShowArrowAtPageTable1,
-          nTableCellPerEachPage: nTableCellPerEachPageTable1,
+          nNumToShowArrowAtPage: nNumToShowArrowAtPageTable1_RP,
+          nTableCellPerEachPage: nTableCellPerEachPageTable1_RP,
         )
       ],
     );

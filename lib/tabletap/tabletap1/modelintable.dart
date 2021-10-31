@@ -1,4 +1,4 @@
-class MainStrucTableTap1 {
+class MainStrucTableTap1_RP {
   String number = '';
   String field01 = '';
   String field02 = '';
@@ -11,7 +11,7 @@ class MainStrucTableTap1 {
   String field09 = '';
   String field10 = '';
 
-  MainStrucTableTap1(
+  MainStrucTableTap1_RP(
       {required this.number,
       required this.field01,
       required this.field02,

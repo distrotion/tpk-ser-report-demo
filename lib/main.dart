@@ -39,6 +39,6 @@ class MainStructure extends StatelessWidget {
         appBar: AppBar(
           title: Text("Sample table"),
         ),
-        body: TapMainBody());
+        body: TapMainBody_RP());
   }
 }
