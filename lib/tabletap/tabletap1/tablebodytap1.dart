@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:ui';
+import 'dart:js' as js;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -149,8 +150,8 @@ class _DataListTableState extends State<DataListTable> {
     //   BlocProvider.of<BlocChangePage>(context).changePage(enumPageList.Tele);
     // }
     void _Edit(MainStrucTableTap1 s) {
-      _CloseYNPopup();
-      BlocProvider.of<BlocPageRebuild>(context).rebuildPage();
+      // _CloseYNPopup();
+      // BlocProvider.of<BlocPageRebuild>(context).rebuildPage();
     }
 
     void _Delete(String s) {
@@ -160,13 +161,13 @@ class _DataListTableState extends State<DataListTable> {
     }
 
     void _tapEdit(MainStrucTableTap1 s) {
-      // _CallYNPopup('Edit ${s}', 'Do you want to Edit ${s} now?', 'Yes', 'No',
-      //     _Edit, _CloseYNPopup, s, false);
-      // EditDataTable1 = s;
-      // EditDataTable1buffer = s;
-      // undercontroltap1 = true;
-      // context.read<FetchDataTable1Bloc>().add(DataSequncePage1.select);
-      // BlocProvider.of<BlocPageRebuild>(context).rebuildPage();
+      print(s.number);
+      print(s.field04);
+      js.context.callMethod('open', [
+        'http://172.20.30.46/ReportServer?%2fReport+Project4%2f${s.field04}&rs:Format=PDF&rs:Command=Render&T1=${s.number}'
+      ]);
+      context.read<FetchDataTable1Bloc>().add(DataSequncePage1.select);
+      BlocProvider.of<BlocPageRebuild>(context).rebuildPage();
     }
 
     void _tapDelete(MainStrucTableTap1 s) {
@@ -272,8 +273,7 @@ class _DataListTableState extends State<DataListTable> {
                 _getDataColumn(3, "Custommer", 'Sort Field 3', 150, tapSort),
                 _getDataColumn(
                     4, "Incharge", 'Sort Field 4', nDataColumnWidth, tapSort),
-                _getDataColumn(5, "Report Type", 'Sort Field 5',
-                    nDataColumnWidth, tapSort),
+                _getDataColumn(5, "Report Type", 'Sort Field 5', 120, tapSort),
                 _getDataColumn(
                     6, "Status", 'Sort Field 6', nDataColumnWidth, tapSort),
                 _getBlankDataColumn(nDataColumnWidthIcon),
@@ -384,9 +384,9 @@ DataRow _getDataRow(
       cells: [
         _getDataCell_Label(number, nDataColumnWidth),
         _getDataCell_Label(field01, nDataColumnWidth),
-        _getDataCell_Label(field02, nDataColumnWidth),
+        _getDataCell_Label(field02, 150),
         _getDataCell_Label(field03, nDataColumnWidth),
-        _getDataCell_Label(field04, nDataColumnWidth),
+        _getDataCell_Label(field04, 120),
         _getDataCell_Label(field05, nDataColumnWidth),
         _getDataCell_Icon(number, funcEdit, funcDelete, nDataColumnWidthIcon,
             nDataWidthIcon, nMarginToMakeIconSmaller, getData),

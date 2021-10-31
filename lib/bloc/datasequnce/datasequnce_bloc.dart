@@ -48,13 +48,15 @@ class FetchDataTable1Bloc
       DataSequncePage1 event) async* {
     if (event == DataSequncePage1.select) {
       yield* selectData_fn(state);
-    } else if (event == DataSequncePage1.update) {
-      yield* updateData_fn(state);
-    } else if (event == DataSequncePage1.delete) {
-      yield* deleteData_fn(state);
-    } else if (event == DataSequncePage1.insert) {
-      yield* InsertData_fn(state);
     }
+
+    // else if (event == DataSequncePage1.update) {
+    //   yield* updateData_fn(state);
+    // } else if (event == DataSequncePage1.delete) {
+    //   yield* deleteData_fn(state);
+    // } else if (event == DataSequncePage1.insert) {
+    //   yield* InsertData_fn(state);
+    // }
   }
 }
 
@@ -95,159 +97,159 @@ Stream<List<MainStrucTableTap1>> selectData_fn(
   yield state;
 }
 
-Stream<List<MainStrucTableTap1>> updateData_fn(
-    List<MainStrucTableTap1> state) async* {
-  print("UPDATE FUNCTION BLOC");
+// Stream<List<MainStrucTableTap1>> updateData_fn(
+//     List<MainStrucTableTap1> state) async* {
+//   print("UPDATE FUNCTION BLOC");
 
-  var input_init = {
-    "Id": EditDataTable1buffer.number,
-    "Username": EditDataTable1buffer.field01,
-    "Password": EditDataTable1buffer.field02,
-    "Name": EditDataTable1buffer.field03,
-    "Section": EditDataTable1buffer.field04,
-    "RoleId": EditDataTable1buffer.field05
-  };
+//   var input_init = {
+//     "Id": EditDataTable1buffer.number,
+//     "Username": EditDataTable1buffer.field01,
+//     "Password": EditDataTable1buffer.field02,
+//     "Name": EditDataTable1buffer.field03,
+//     "Section": EditDataTable1buffer.field04,
+//     "RoleId": EditDataTable1buffer.field05
+//   };
 
-  final response_init =
-      await http.post(Uri.parse(server + "report_list"), body: input_init);
-  //-------------------------------------------------------------------------
-  print("SELECT FUNCTION BLOC");
-  String input = "hi data";
-  final response =
-      await http.post(Uri.parse(server + "report_list"), body: input);
+//   final response_init =
+//       await http.post(Uri.parse(server + "report_list"), body: input_init);
+//   //-------------------------------------------------------------------------
+//   print("SELECT FUNCTION BLOC");
+//   String input = "hi data";
+//   final response =
+//       await http.post(Uri.parse(server + "report_list"), body: input);
 
-  var data_input = [];
-  if (response.statusCode == 200) {
-    var databuff = jsonDecode(response.body);
-    data_input = databuff[0]['output'];
-    print(data_input);
-  } else {
-    print("where is my server");
-  }
+//   var data_input = [];
+//   if (response.statusCode == 200) {
+//     var databuff = jsonDecode(response.body);
+//     data_input = databuff[0]['output'];
+//     print(data_input);
+//   } else {
+//     print("where is my server");
+//   }
 
-  List<MainStrucTableTap1> stateoutput = [];
-  for (var i = 0; i < data_input.length; i++) {
-    stateoutput.add(MainStrucTableTap1(
-      number: data_input[i]['PO'].toString(),
-      field01: data_input[i]['CP'].toString(),
-      field02: data_input[i]['data01'].toString(),
-      field03: data_input[i]['data02'].toString(),
-      field04: data_input[i]['data03'].toString(),
-      field05: data_input[i]['data04'].toString(),
-      field06: "",
-      field07: "",
-      field08: "",
-      field09: "",
-      field10: "",
-    ));
-  }
+//   List<MainStrucTableTap1> stateoutput = [];
+//   for (var i = 0; i < data_input.length; i++) {
+//     stateoutput.add(MainStrucTableTap1(
+//       number: data_input[i]['PO'].toString(),
+//       field01: data_input[i]['CP'].toString(),
+//       field02: data_input[i]['data01'].toString(),
+//       field03: data_input[i]['data02'].toString(),
+//       field04: data_input[i]['data03'].toString(),
+//       field05: data_input[i]['data04'].toString(),
+//       field06: "",
+//       field07: "",
+//       field08: "",
+//       field09: "",
+//       field10: "",
+//     ));
+//   }
 
-  state = stateoutput;
+//   state = stateoutput;
 
-  yield state;
-}
+//   yield state;
+// }
 
-Stream<List<MainStrucTableTap1>> deleteData_fn(
-    List<MainStrucTableTap1> state) async* {
-  print("DELETE FUNCTION BLOC");
-  var input_init = {
-    "Id": DeleteDataTable1buffer.number,
-    "Username": DeleteDataTable1buffer.field01,
-    "Password": DeleteDataTable1buffer.field02,
-    "Name": DeleteDataTable1buffer.field03,
-    "Section": DeleteDataTable1buffer.field04,
-    "RoleId": DeleteDataTable1buffer.field05
-  };
+// Stream<List<MainStrucTableTap1>> deleteData_fn(
+//     List<MainStrucTableTap1> state) async* {
+//   print("DELETE FUNCTION BLOC");
+//   var input_init = {
+//     "Id": DeleteDataTable1buffer.number,
+//     "Username": DeleteDataTable1buffer.field01,
+//     "Password": DeleteDataTable1buffer.field02,
+//     "Name": DeleteDataTable1buffer.field03,
+//     "Section": DeleteDataTable1buffer.field04,
+//     "RoleId": DeleteDataTable1buffer.field05
+//   };
 
-  final response_init =
-      await http.post(Uri.parse(server + "report_list"), body: input_init);
-  //-------------------------------------------------------------------------
-  String input = "hi data";
-  print("SELECT FUNCTION BLOC");
-  final response =
-      await http.post(Uri.parse(server + "report_list"), body: input);
+//   final response_init =
+//       await http.post(Uri.parse(server + "report_list"), body: input_init);
+//   //-------------------------------------------------------------------------
+//   String input = "hi data";
+//   print("SELECT FUNCTION BLOC");
+//   final response =
+//       await http.post(Uri.parse(server + "report_list"), body: input);
 
-  var data_input = [];
-  if (response.statusCode == 200) {
-    var databuff = jsonDecode(response.body);
-    data_input = databuff[0]['output'];
-    // print(data_input);
-  } else {
-    print("where is my server");
-  }
+//   var data_input = [];
+//   if (response.statusCode == 200) {
+//     var databuff = jsonDecode(response.body);
+//     data_input = databuff[0]['output'];
+//     // print(data_input);
+//   } else {
+//     print("where is my server");
+//   }
 
-  List<MainStrucTableTap1> stateoutput = [];
-  for (var i = 0; i < data_input.length; i++) {
-    stateoutput.add(MainStrucTableTap1(
-      number: data_input[i]['PO'].toString(),
-      field01: data_input[i]['CP'].toString(),
-      field02: data_input[i]['data01'].toString(),
-      field03: data_input[i]['data02'].toString(),
-      field04: data_input[i]['data03'].toString(),
-      field05: data_input[i]['data04'].toString(),
-      field06: "",
-      field07: "",
-      field08: "",
-      field09: "",
-      field10: "",
-    ));
-  }
+//   List<MainStrucTableTap1> stateoutput = [];
+//   for (var i = 0; i < data_input.length; i++) {
+//     stateoutput.add(MainStrucTableTap1(
+//       number: data_input[i]['PO'].toString(),
+//       field01: data_input[i]['CP'].toString(),
+//       field02: data_input[i]['data01'].toString(),
+//       field03: data_input[i]['data02'].toString(),
+//       field04: data_input[i]['data03'].toString(),
+//       field05: data_input[i]['data04'].toString(),
+//       field06: "",
+//       field07: "",
+//       field08: "",
+//       field09: "",
+//       field10: "",
+//     ));
+//   }
 
-  state = stateoutput;
+//   state = stateoutput;
 
-  yield state;
-}
+//   yield state;
+// }
 
-Stream<List<MainStrucTableTap1>> InsertData_fn(
-    List<MainStrucTableTap1> state) async* {
-  print("INSERT FUNCTION BLOC");
-  var input_init = {
-    "Id": "insert",
-    "Username": EditDataTable1buffer.field01,
-    "Password": EditDataTable1buffer.field02,
-    "Name": EditDataTable1buffer.field03,
-    "Section": EditDataTable1buffer.field04,
-    "RoleId": EditDataTable1buffer.field05
-  };
+// Stream<List<MainStrucTableTap1>> InsertData_fn(
+//     List<MainStrucTableTap1> state) async* {
+//   print("INSERT FUNCTION BLOC");
+//   var input_init = {
+//     "Id": "insert",
+//     "Username": EditDataTable1buffer.field01,
+//     "Password": EditDataTable1buffer.field02,
+//     "Name": EditDataTable1buffer.field03,
+//     "Section": EditDataTable1buffer.field04,
+//     "RoleId": EditDataTable1buffer.field05
+//   };
 
-  final response_init =
-      await http.post(Uri.parse(server + "report_list"), body: input_init);
-  //-------------------------------------------------------------------------
-  String input = "hi data";
-  print("SELECT FUNCTION BLOC");
-  final response =
-      await http.post(Uri.parse(server + "report_list"), body: input);
+//   final response_init =
+//       await http.post(Uri.parse(server + "report_list"), body: input_init);
+//   //-------------------------------------------------------------------------
+//   String input = "hi data";
+//   print("SELECT FUNCTION BLOC");
+//   final response =
+//       await http.post(Uri.parse(server + "report_list"), body: input);
 
-  var data_input = [];
-  if (response.statusCode == 200) {
-    var databuff = jsonDecode(response.body);
-    data_input = databuff[0]['output'];
-    // print(data_input);
-  } else {
-    print("where is my server");
-  }
+//   var data_input = [];
+//   if (response.statusCode == 200) {
+//     var databuff = jsonDecode(response.body);
+//     data_input = databuff[0]['output'];
+//     // print(data_input);
+//   } else {
+//     print("where is my server");
+//   }
 
-  List<MainStrucTableTap1> stateoutput = [];
-  for (var i = 0; i < data_input.length; i++) {
-    stateoutput.add(MainStrucTableTap1(
-      number: data_input[i]['PO'].toString(),
-      field01: data_input[i]['CP'].toString(),
-      field02: data_input[i]['data01'].toString(),
-      field03: data_input[i]['data02'].toString(),
-      field04: data_input[i]['data03'].toString(),
-      field05: data_input[i]['data04'].toString(),
-      field06: "",
-      field07: "",
-      field08: "",
-      field09: "",
-      field10: "",
-    ));
-  }
+//   List<MainStrucTableTap1> stateoutput = [];
+//   for (var i = 0; i < data_input.length; i++) {
+//     stateoutput.add(MainStrucTableTap1(
+//       number: data_input[i]['PO'].toString(),
+//       field01: data_input[i]['CP'].toString(),
+//       field02: data_input[i]['data01'].toString(),
+//       field03: data_input[i]['data02'].toString(),
+//       field04: data_input[i]['data03'].toString(),
+//       field05: data_input[i]['data04'].toString(),
+//       field06: "",
+//       field07: "",
+//       field08: "",
+//       field09: "",
+//       field10: "",
+//     ));
+//   }
 
-  state = stateoutput;
+//   state = stateoutput;
 
-  yield state;
-}
+//   yield state;
+// }
 
 //------------------------------------------------------------------------------
 
@@ -275,7 +277,7 @@ Stream<List<MainStrucTableTap2>> selectData2_fn(
   print("SELECT FUNCTION BLOC 2");
   String input = "hi data";
   final response =
-      await http.post(Uri.parse(server + "Customer_Data_query"), body: input);
+      await http.post(Uri.parse(server + "report_setup_list"), body: input);
 
   var data_input = [];
   if (response.statusCode == 200) {
@@ -289,12 +291,12 @@ Stream<List<MainStrucTableTap2>> selectData2_fn(
   List<MainStrucTableTap2> stateoutput = [];
   for (var i = 0; i < data_input.length; i++) {
     stateoutput.add(MainStrucTableTap2(
-      number: data_input[i]['Id'].toString(),
-      field01: data_input[i]['CustId'].toString(),
-      field02: data_input[i]['CustFull'].toString(),
-      field03: data_input[i]['CustShort'].toString(),
+      number: data_input[i]['NO'].toString(),
+      field01: data_input[i]['CP'].toString(),
+      field02: data_input[i]['Customer'].toString(),
+      field03: data_input[i]['Materail'].toString(),
       field04: data_input[i]['Branch'].toString(),
-      field05: data_input[i]['CODE'].toString(),
+      field05: data_input[i]['ReportType'].toString(),
       field06: "",
       field07: "",
       field08: "",
@@ -312,22 +314,22 @@ Stream<List<MainStrucTableTap2>> updateData2_fn(
   print("UPDATE FUNCTION BLOC 2");
 
   var input_init = {
-    "Id": EditDataTable2buffer.number,
-    "CustId": EditDataTable2buffer.field01,
-    "CustFull": EditDataTable2buffer.field02,
-    "CustShort": EditDataTable2buffer.field03,
+    "NO": EditDataTable2buffer.number,
+    "CP": EditDataTable2buffer.field01,
+    "Customer": EditDataTable2buffer.field02,
+    "Materail": EditDataTable2buffer.field03,
     "Branch": EditDataTable2buffer.field04,
-    "CODE": EditDataTable2buffer.field05
+    "ReportType": EditDataTable2buffer.field05
   };
 
-  final response_init = await http
-      .post(Uri.parse(server + "Custommer_data_update"), body: input_init);
+  final response_init = await http.post(Uri.parse(server + "report_setup_edit"),
+      body: input_init);
 
   //------------------------------------------------------------------------------
 
   String input = "hi data";
   final response =
-      await http.post(Uri.parse(server + "Customer_Data_query"), body: input);
+      await http.post(Uri.parse(server + "report_setup_list"), body: input);
 
   var data_input = [];
   if (response.statusCode == 200) {
@@ -341,12 +343,12 @@ Stream<List<MainStrucTableTap2>> updateData2_fn(
   List<MainStrucTableTap2> stateoutput = [];
   for (var i = 0; i < data_input.length; i++) {
     stateoutput.add(MainStrucTableTap2(
-      number: data_input[i]['Id'].toString(),
-      field01: data_input[i]['CustId'].toString(),
-      field02: data_input[i]['CustFull'].toString(),
-      field03: data_input[i]['CustShort'].toString(),
+      number: data_input[i]['NO'].toString(),
+      field01: data_input[i]['CP'].toString(),
+      field02: data_input[i]['Customer'].toString(),
+      field03: data_input[i]['Materail'].toString(),
       field04: data_input[i]['Branch'].toString(),
-      field05: data_input[i]['CODE'].toString(),
+      field05: data_input[i]['ReportType'].toString(),
       field06: "",
       field07: "",
       field08: "",
@@ -363,21 +365,21 @@ Stream<List<MainStrucTableTap2>> deleteData2_fn(
     List<MainStrucTableTap2> state) async* {
   print("DELETE FUNCTION BLOC 2");
   var input_init = {
-    "Id": DeleteDataTable2buffer.number,
-    "CustId": DeleteDataTable2buffer.field01,
-    "CustFull": DeleteDataTable2buffer.field02,
-    "CustShort": DeleteDataTable2buffer.field03,
-    "Branch": DeleteDataTable2buffer.field04,
-    "CODE": DeleteDataTable2buffer.field05
+    "NO": EditDataTable2buffer.number,
+    "CP": EditDataTable2buffer.field01,
+    "Customer": EditDataTable2buffer.field02,
+    "Materail": EditDataTable2buffer.field03,
+    "Branch": EditDataTable2buffer.field04,
+    "ReportType": EditDataTable2buffer.field05
   };
 
   final response_init = await http
-      .post(Uri.parse(server + "Custommer_data_delete"), body: input_init);
+      .post(Uri.parse(server + "report_setup_delete"), body: input_init);
   //------------------------------------------------------------------------------
 
   String input = "hi data";
   final response =
-      await http.post(Uri.parse(server + "Customer_Data_query"), body: input);
+      await http.post(Uri.parse(server + "report_setup_list"), body: input);
 
   var data_input = [];
   if (response.statusCode == 200) {
@@ -391,12 +393,12 @@ Stream<List<MainStrucTableTap2>> deleteData2_fn(
   List<MainStrucTableTap2> stateoutput = [];
   for (var i = 0; i < data_input.length; i++) {
     stateoutput.add(MainStrucTableTap2(
-      number: data_input[i]['Id'].toString(),
-      field01: data_input[i]['CustId'].toString(),
-      field02: data_input[i]['CustFull'].toString(),
-      field03: data_input[i]['CustShort'].toString(),
+      number: data_input[i]['NO'].toString(),
+      field01: data_input[i]['CP'].toString(),
+      field02: data_input[i]['Customer'].toString(),
+      field03: data_input[i]['Materail'].toString(),
       field04: data_input[i]['Branch'].toString(),
-      field05: data_input[i]['CODE'].toString(),
+      field05: data_input[i]['ReportType'].toString(),
       field06: "",
       field07: "",
       field08: "",
@@ -414,22 +416,22 @@ Stream<List<MainStrucTableTap2>> InsertData2_fn(
     List<MainStrucTableTap2> state) async* {
   print("INSERT FUNCTION BLOC 2");
   var input_init = {
-    "Id": "insert",
-    "CustId": EditDataTable2buffer.field01,
-    "CustFull": EditDataTable2buffer.field02,
-    "CustShort": EditDataTable2buffer.field03,
+    "NO": EditDataTable2buffer.number,
+    "CP": EditDataTable2buffer.field01,
+    "Customer": EditDataTable2buffer.field02,
+    "Materail": EditDataTable2buffer.field03,
     "Branch": EditDataTable2buffer.field04,
-    "CODE": EditDataTable2buffer.field05
+    "ReportType": EditDataTable2buffer.field05
   };
 
-  final response_init = await http
-      .post(Uri.parse(server + "Customer_Data_insert"), body: input_init);
+  final response_init =
+      await http.post(Uri.parse(server + "report_setup_new"), body: input_init);
 
   //------------------------------------------------------------------------------
 
   String input = "hi data";
   final response =
-      await http.post(Uri.parse(server + "Customer_Data_query"), body: input);
+      await http.post(Uri.parse(server + "report_setup_list"), body: input);
 
   var data_input = [];
   if (response.statusCode == 200) {
@@ -443,12 +445,12 @@ Stream<List<MainStrucTableTap2>> InsertData2_fn(
   List<MainStrucTableTap2> stateoutput = [];
   for (var i = 0; i < data_input.length; i++) {
     stateoutput.add(MainStrucTableTap2(
-      number: data_input[i]['Id'].toString(),
-      field01: data_input[i]['CustId'].toString(),
-      field02: data_input[i]['CustFull'].toString(),
-      field03: data_input[i]['CustShort'].toString(),
+      number: data_input[i]['NO'].toString(),
+      field01: data_input[i]['CP'].toString(),
+      field02: data_input[i]['Customer'].toString(),
+      field03: data_input[i]['Materail'].toString(),
       field04: data_input[i]['Branch'].toString(),
-      field05: data_input[i]['CODE'].toString(),
+      field05: data_input[i]['ReportType'].toString(),
       field06: "",
       field07: "",
       field08: "",

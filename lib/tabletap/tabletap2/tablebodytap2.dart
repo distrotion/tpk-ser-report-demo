@@ -270,11 +270,11 @@ class _DataListTable2State extends State<DataListTable2> {
               // Header Column -----------------------------------------------------------
               columns: [
                 _getDataColumn(
-                    1, "CP", 'Sort Field 1', nDataColumnWidth, tapSort),
+                    1, "NO", 'Sort Field 1', nDataColumnWidth, tapSort),
                 _getDataColumn(
-                    2, "CustShort", 'Sort Field 2', nDataColumnWidth, tapSort),
+                    2, "CP", 'Sort Field 2', nDataColumnWidth, tapSort),
                 _getDataColumn(
-                    3, "PART", 'Sort Field 3', nDataColumnWidth, tapSort),
+                    3, "Customer", 'Sort Field 3', nDataColumnWidth, tapSort),
                 _getDataColumn(
                     4, "Materail", 'Sort Field 4', nDataColumnWidth, tapSort),
                 _getDataColumn(
@@ -616,7 +616,7 @@ void _ConsoleBox(MainStrucTableTap2 input, BuildContext contextinput,
                   EditDataTable2buffer.field04 = newValue;
                   BlocProvider.of<BlocPageRebuild>(contextinput).rebuildPage();
                 },
-                listdropdown: ['', 'RAYONG', 'BANGPOO', 'GATEWAY', 'f3'],
+                listdropdown: ['', 'RAYONG', 'BANGPOO', 'GATEWAY'],
               ),
               SizedBox(
                 width: 400,
@@ -634,7 +634,7 @@ void _ConsoleBox(MainStrucTableTap2 input, BuildContext contextinput,
                   EditDataTable2buffer.field05 = newValue;
                   BlocProvider.of<BlocPageRebuild>(contextinput).rebuildPage();
                 },
-                listdropdown: ['', 'TPK-SAR-STD', 'TPK-SAR-Condition01', 'f4'],
+                listdropdown: ['', 'TPK-SAR-STD', 'TPK-SAR-Condition01'],
               ),
               // SizedBox(
               //   width: 400,

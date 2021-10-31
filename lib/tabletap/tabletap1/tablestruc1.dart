@@ -82,7 +82,7 @@ class __TableStrucMain1State extends State<_TableStrucMain1> {
         children: [
           Container(
             // color: Colors.red,
-            width: 800,
+            width: 900,
             height: 420,
             child: Column(
               children: [
