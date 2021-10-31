@@ -279,9 +279,8 @@ class _DataListTable2State extends State<DataListTable2> {
                     4, "Materail", 'Sort Field 4', nDataColumnWidth, tapSort),
                 _getDataColumn(
                     5, "Branch", 'Sort Field 5', nDataColumnWidth, tapSort),
-                _getDataColumn(6, "Report Type", 'Sort Field 6',
-                    nDataColumnWidth, tapSort),
-                _getBlankDataColumn(nDataColumnWidthIcon),
+                _getDataColumn(6, "Report Type", 'Sort Field 6', 150, tapSort),
+                _getBlankDataColumn(50),
               ],
               // Cell Row  -----------------------------------------------------------
               rows: [
@@ -392,9 +391,9 @@ DataRow _getDataRow(
         _getDataCell_Label(field02, nDataColumnWidth),
         _getDataCell_Label(field03, nDataColumnWidth),
         _getDataCell_Label(field04, nDataColumnWidth),
-        _getDataCell_Label(field05, nDataColumnWidth),
-        _getDataCell_Icon(number, funcEdit, funcDelete, nDataColumnWidthIcon,
-            nDataWidthIcon, nMarginToMakeIconSmaller, getData),
+        _getDataCell_Label(field05, 150),
+        _getDataCell_Icon(number, funcEdit, funcDelete, 50, nDataWidthIcon,
+            nMarginToMakeIconSmaller, getData),
       ],
       onSelectChanged: (value) {
         // funcView(number);
